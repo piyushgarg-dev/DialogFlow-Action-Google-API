@@ -34,7 +34,7 @@ const {
   })
 
   app.intent('get blog body',agent=>{
-    blogbody =  agent.parameters['given-name'];
+    blogbody =  agent.parameters['blog-body'];
     console.log('Body Set to: ',blogbody);
     const apiurl = `http://randomblogs.herokuapp.com/api/3a6b9c12d`;
     const data = {
