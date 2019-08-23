@@ -1,56 +1,10 @@
-const {
-    dialogflow,
-    Image,
-  } = require('actions-on-google')
-  
-  // Create an app instance
-  const app = dialogflow()
-  
-  var username,useremail,blogtitle,blogbody='hello_test';
+const expess = require("express");
+const bodyParser = require("body-parser");
 
-  // Register handlers for Dialogflow intents
-  
-  app.intent('Default Welcome Intent', agent => {
-    agent.add(`Welcome to my agent!`);
-  })
-  
-  app.intent('Default Fallback Intent', conv => {
-    conv.ask(`I didn't understand. Can you tell me something else?`)
-  })
+const full = require("./fulfillment");
 
-  app.intent('get user name',agent=>{
-    username = agent.parameters['given-name'];
-    console.log('Name Set to: ',username);
-  })
+const expressApp = express().use(bodyParser.json());
 
-  app.intent('get user email',agent=>{
-    useremail= agent.parameters['email'];
-    console.log('Email Set to: ',useremail);
-  })
+expressApp.post("/full", full);
 
-  app.intent('get blog title',agent=>{
-    blogtitle = agent.parameters['given-name'];
-    console.log('Title Set to: ',blogtitle);
-  })
-
-  app.intent('get blog body',agent=>{
-    blogbody =  agent.parameters['given-name'];
-    console.log('Body Set to: ',blogbody);
-    const apiurl = `http://randomblogs.herokuapp.com/api/3a6b9c12d`;
-    const data = {
-    email:useremail,
-    title:blogtitle,
-    body:blogbody
-    };
-    const options = {
-    method:'POST',
-      headers:{
-      	'Content-Type':'application/json'
-      },
-      body:JSON.stringify(data)
-    };
-    fetch(apiurl,options)
-    .then(res=>res.json())
-    .then(data=>console.log(data));
-  
-  })
+expressApp.listen(3000);
