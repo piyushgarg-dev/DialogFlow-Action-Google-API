@@ -29,7 +29,7 @@ const {
   })
 
   app.intent('get blog title',agent=>{
-    blogtitle = agent.parameters['given-name'];
+    blogtitle = agent.parameters['blog-title'];
     console.log('Title Set to: ',blogtitle);
   })
 
@@ -38,9 +38,9 @@ const {
     console.log('Body Set to: ',blogbody);
     const apiurl = `http://randomblogs.herokuapp.com/api/3a6b9c12d`;
     const data = {
-    email:'useremail',
-    title:'blogtitle',
-    body:'blogbody'
+    email:useremail,
+    title:blogtitle,
+    body:blogbody
     };
     const options = {
     method:'POST',
