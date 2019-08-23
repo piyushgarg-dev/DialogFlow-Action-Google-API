@@ -38,9 +38,9 @@ const {
     console.log('Body Set to: ',blogbody);
     const apiurl = `http://randomblogs.herokuapp.com/api/3a6b9c12d`;
     const data = {
-    email:useremail,
-    title:blogtitle,
-    body:blogbody
+    email:'useremail',
+    title:'blogtitle',
+    body:'blogbody'
     };
     const options = {
     method:'POST',
