@@ -2,7 +2,7 @@ const {
     dialogflow,
     Image,
   } = require('actions-on-google')
-  
+  const fetch = require('node-fetch');
   // Create an app instance
   const app = dialogflow()
   
