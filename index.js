@@ -7,4 +7,4 @@ const expressApp = express().use(bodyParser.json());
 
 expressApp.post("/full", full);
 
-expressApp.listen(3000);
+expressApp.listen(process.env.PORT,()=>console.log('PORT',process.env.PORT));
